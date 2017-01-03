@@ -48,6 +48,6 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Foundation\Http\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-    	'sign' => \Core\Middleware\Sign::class
+    	'sign' => \App\Http\Middleware\Sign::class
     ];
 }

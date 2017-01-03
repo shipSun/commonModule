@@ -18,17 +18,17 @@ class Sign {
 	
 	public function handle(Request $request, Closure $next){
 		$product_app_id = $request->get('product_app_id');
-		$request->request->remove('product_app_id');
-		$request->query->remove('product_app_id');
-			
 		$product_sign = $request->get('product_sign');
-		$request->request->remove('product_sign');
-		$request->query->remove('product_sign');
-			
 		$product_sign_type = $request->get('product_sign_type');
-		$request->request->remove('product_sign_type');
-		$request->query->remove('product_sign_type');
 		
+		if($request->get('interface')!='encrypt.sign'){
+			$request->request->remove('product_app_id');
+			$request->query->remove('product_app_id');
+			$request->request->remove('product_sign');
+			$request->query->remove('product_sign');
+			$request->request->remove('product_sign_type');
+			$request->query->remove('product_sign_type');
+		}
 		if(config('app.sign', false) && $request->get('interface')!='encrypt.sign'){
 			$data = $request->all();
 			Log::debug('common签名验证', $data);

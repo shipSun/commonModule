@@ -2,6 +2,7 @@
 namespace App\Interfaces;
 
 use App\Models\PayTypeModel;
+use Core\Exceptions\NoticeException;
 use Log;
 
 class PayType {
@@ -14,6 +15,9 @@ class PayType {
 		$data = [];
 		foreach($model as $val){
 			$data[] = $val->getAttributes();
+		}
+		if(empty($data)){
+			throw new NoticeException('没有对应支付类型');
 		}
 		return $data;
 	}
